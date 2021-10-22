@@ -1,4 +1,4 @@
-import contactsControl from '../../service-API';
+import contactsControl from '../../service-API/contacts-api';
 import actions from './phonebook-actions';
 
 const getContacts = () => dispatch => {

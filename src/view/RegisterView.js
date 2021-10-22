@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import authOperations from '../redux/auth/auth-operations';
 import s from './views.module.css';
 
 export default function RegisterView() {
-  const [userName, setUserName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,7 +13,7 @@ export default function RegisterView() {
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
       case 'name':
-        return setUserName(value);
+        return setName(value);
       case 'email':
         return setEmail(value);
       case 'password':
@@ -21,19 +22,29 @@ export default function RegisterView() {
         return;
     }
   };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(authOperations.newUser({ name, email, password }));
+    setName('');
+    setEmail('');
+    setPassword('');
+  };
   return (
     <div>
       <h1>Registration Page</h1>
-      <form>
-        <label>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <label className={s.label}>
           Name
-          <input type="text" value={userName} name="name" onChange={handleChange} />
+          <input type="text" value={name} name="name" onChange={handleChange} />
         </label>
-        <label>
+
+        <label className={s.label}>
           Email
           <input type="email" value={email} name="email" onChange={handleChange} />
         </label>
-        <label>
+
+        <label className={s.label}>
           Password
           <input type="password" name="password" value={password} onChange={handleChange} />
         </label>
