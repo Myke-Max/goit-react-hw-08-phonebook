@@ -32,14 +32,28 @@ export default function LoginView() {
       <form className={s.form} onSubmit={handleSubmit}>
         <label className={s.label}>
           Email
-          <input type="email" name="email" value={email} onChange={handleChange} />
+          <input
+            className={s.input}
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+          />
         </label>
 
         <label className={s.label}>
           Password
-          <input type="password" name="password" value={password} onChange={handleChange} />
+          <input
+            className={s.input}
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
         </label>
-        <button type="submit">Enter</button>
+        <button className={s.enter_button} type="submit">
+          Enter
+        </button>
       </form>
     </div>
   );
